@@ -1,0 +1,14 @@
+.container{
+    width: 100vw;
+    height:90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.my-form{
+    text-align: center;
+}
+.my-form input{
+    display: block;
+}

@@ -6,19 +6,51 @@ import About from '../screens/About/About';
 import Profile from '../screens/Profile/Profile';
 import Contact from '../screens/Contact/Contact';
 import NotFound from '../screens/NotFound/NotFound';
+import Dashboard from '../screens/Dashboard/Dashboard';
+import PrivateRoute from './PrivateRoute';
+import Login from '../screens/Login/Login';
+
 
 class Router extends Component {
+    state = {
+        isLoggedIn: true
+    }
     render() {
-        return(
+        const { isLoggedIn } = this.state;
+        return (
             <BrowserRouter>
-                    <Header />
-                    <Switch>            
-                        <Route exact path='/' component={Home}/>
-                        <Route exact path='/about' component={About}/>
-                        <Route exact path='/profile' component={Profile}/>
-                        <Route exact path='/contact' component={Contact}/>
-                        <Route component={NotFound} />
-                    </Switch>            
+                <Header />
+                <Switch>
+                    <PrivateRoute
+                        exact
+                        isLoggedIn={isLoggedIn}
+                        path="/dashboard"
+                        component={Dashboard}
+                    />
+                    <Route
+                        exact
+                        path='/'
+                        component={Login}
+                    />
+                    <Route
+                        exact
+                        path='/about'
+                        component={About}
+                    />
+                    <Route
+                        exact
+                        path='/profile'
+                        component={Profile}
+                    />
+                    <Route
+                        exact
+                        path='/contact'
+                        component={Contact}
+                    />
+                    <Route
+                        component={NotFound}
+                    />
+                </Switch>
             </BrowserRouter>
         );
     }
